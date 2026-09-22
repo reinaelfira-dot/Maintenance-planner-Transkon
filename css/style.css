@@ -121,9 +121,13 @@ img {
 }
 
 .nav-container {
-    width: min(var(--container), calc(100% - 48px));
+    width: 100%;
+
     min-height: 76px;
-    margin: 0 auto;
+
+    padding: 0 42px;
+
+    margin: 0;
 
     display: flex;
     align-items: center;
@@ -131,7 +135,6 @@ img {
 
     gap: 30px;
 }
-
 
 /* Brand */
 
@@ -143,23 +146,13 @@ img {
     flex-shrink: 0;
 }
 
-.brand-symbol {
-    width: 38px;
-    height: 38px;
+.brand-logo {
+    width: 48px;
+    height: 48px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: contain;
 
-    border-radius: 8px;
-
-    background: var(--transkon-red);
-    color: white;
-
-    font-size: 20px;
-    font-weight: 800;
-
-    box-shadow: 0 6px 18px rgba(201,31,43,0.3);
+    display: block;
 }
 
 .brand-text {
