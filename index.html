@@ -1,1608 +1,1140 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Transkon Fleet Maintenance
-    </title>
+    <meta name="description"
+          content="Transkon Fleet Maintenance Planning Dashboard">
 
-    <meta
-        name="description"
-        content="Transkon Fleet Maintenance and Service Planning Dashboard"
-    >
+    <title>Transkon Fleet Maintenance</title>
 
     <!-- Google Font -->
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Main CSS -->
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
+    <header class="navbar" id="navbar">
 
-<header class="navbar" id="navbar">
+        <div class="nav-container">
 
-    <div class="nav-container">
+            <!-- Brand -->
+            <a href="#home" class="brand">
 
-        <a
-            href="#dashboard"
-            class="brand"
-        >
+                <div class="brand-symbol">
+                    T
+                </div>
 
-            <img
-                src="assets/images/transkon-logo.png"
-                alt="Transkon Rent"
-                class="brand-logo"
-            >
+                <div class="brand-text">
+                    <strong>TRANSKON</strong>
+                    <span>FLEET MANAGEMENT</span>
+                </div>
 
-        </a>
-
-
-        <nav class="nav-menu">
-
-            <a
-                href="#dashboard"
-                class="nav-link active"
-            >
-                Dashboard
             </a>
 
-            <a
-                href="#planning"
-                class="nav-link"
-            >
-                Service Planning
-            </a>
 
-            <a
-                href="#fleet"
-                class="nav-link"
-            >
-                Fleet
-            </a>
+            <!-- Navigation -->
+            <nav class="nav-menu">
 
-            <a
-                href="#reports"
-                class="nav-link"
-            >
-                Reports
-            </a>
+                <a href="#home" class="nav-link active">
+                    Dashboard
+                </a>
 
-        </nav>
+                <a href="#planning" class="nav-link">
+                    Service Planning
+                </a>
 
+                <a href="#fleet" class="nav-link">
+                    Fleet
+                </a>
 
-        <div class="nav-right">
+                <a href="#reports" class="nav-link">
+                    Reports
+                </a>
 
-            <button
-                class="btn-upload"
-                id="openUploadBtn"
-            >
-
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                Upload Latest KM
-
-            </button>
+            </nav>
 
 
+            <!-- System Status -->
             <div class="system-status">
 
                 <span class="status-dot"></span>
 
-                <div>
-
-                    <strong>
-                        System Online
-                    </strong>
-
-                    <small>
-                        Last update: 22 Sep 2026 14:30
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="user-profile">
-
-                <div class="user-avatar">
-
-                    <i class="fa-solid fa-user"></i>
-
-                </div>
-
-                <div class="user-info">
-
-                    <strong>
-                        Fleet Planner
-                    </strong>
-
-                    <small>
-                        Transkon
-                    </small>
-
-                </div>
-
-                <i class="fa-solid fa-chevron-down"></i>
-
-            </div>
-
-
-            <button
-                class="mobile-menu"
-                id="mobileMenu"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
-<main id="dashboard">
-
-
-<section class="hero">
-
-    <div class="hero-image"></div>
-
-    <div class="hero-overlay"></div>
-
-
-    <div class="hero-container">
-
-        <div class="hero-content">
-
-            <span class="hero-label">
-                TRANSKON FLEET MANAGEMENT
-            </span>
-
-
-            <h1>
-
-                Service Maintenance
-
-                <span>
-                    Planning
-                </span>
-
-            </h1>
-
-
-            <p>
-
-                Centralized fleet maintenance planning
-                for better service scheduling, fleet
-                readiness, and operational control.
-
-            </p>
-
-
-            <div class="hero-actions">
-
-                <a
-                    href="#overview"
-                    class="hero-btn primary"
-                >
-
-                    <i class="fa-solid fa-chart-column"></i>
-
-                    View Dashboard
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-
-                <a
-                    href="#planning"
-                    class="hero-btn secondary"
-                >
-
-                    Service Planning
-
-                </a>
+                <span>System Online</span>
 
             </div>
 
         </div>
 
-
-        <!-- Fleet status card -->
-
-        <div class="hero-status-card">
-
-            <div class="status-card-header">
-
-                <span>
-                    FLEET STATUS
-                </span>
-
-                <span class="live-badge">
-                    LIVE
-                </span>
-
-            </div>
-
-
-            <div class="fleet-number">
-
-                302
-
-            </div>
-
-
-            <p>
-                Active Units
-            </p>
-
-
-            <div class="readiness-bar">
-
-                <span></span>
-
-            </div>
-
-
-            <div class="readiness-footer">
-
-                <span>
-                    Maintenance readiness
-                </span>
-
-                <strong>
-                    92%
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+    </header>
 
 
 
-<!-- ======================================================
-     KPI
-====================================================== -->
+    <!-- =====================================================
+         HERO SECTION
+    ====================================================== -->
 
-<section
-    class="kpi-section"
-    id="overview"
->
+    <main>
 
-    <div class="container">
+        <section class="hero" id="home">
 
-        <div class="kpi-container">
+            <!-- Header Image -->
+            <div class="hero-image"></div>
+
+            <!-- Dark Overlay -->
+            <div class="hero-overlay"></div>
 
 
-            <div class="kpi-card">
+            <div class="hero-container">
 
-                <div class="kpi-icon red">
+                <div class="hero-content">
 
-                    <i class="fa-solid fa-truck"></i>
-
-                </div>
-
-                <div>
-
-                    <span class="kpi-label">
-                        ACTIVE UNITS
+                    <span class="eyebrow">
+                        TRANSKON FLEET MANAGEMENT
                     </span>
 
-                    <strong class="kpi-number">
-                        302
-                    </strong>
-
-                    <small class="kpi-positive">
-
-                        <i class="fa-solid fa-arrow-up"></i>
-
-                        +4 from last update
-
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-icon blue">
-
-                    <i class="fa-solid fa-wrench"></i>
-
-                </div>
-
-                <div>
-
-                    <span class="kpi-label">
-                        SERVICE DUE
-                    </span>
-
-                    <strong class="kpi-number">
-                        18
-                    </strong>
-
-                    <small>
-                        Next 7 days
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-icon danger">
-
-                    <i class="fa-solid fa-exclamation"></i>
-
-                </div>
-
-                <div>
-
-                    <span class="kpi-label">
-                        OVERDUE
-                    </span>
-
-                    <strong class="kpi-number">
-                        5
-                    </strong>
-
-                    <small class="kpi-danger">
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                        Requires attention
-
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="kpi-card">
-
-                <div class="kpi-icon green">
-
-                    <i class="fa-solid fa-calendar-check"></i>
-
-                </div>
-
-                <div>
-
-                    <span class="kpi-label">
-                        THIS MONTH
-                    </span>
-
-                    <strong class="kpi-number">
-                        47
-                    </strong>
-
-                    <small>
-                        Planned services
-                    </small>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     DATA STATUS
-====================================================== -->
-
-<section class="data-status-section">
-
-    <div class="container">
-
-        <div class="data-status-card">
-
-            <div class="data-status-left">
-
-                <div class="data-icon">
-
-                    <i class="fa-solid fa-database"></i>
-
-                </div>
-
-                <div>
-
-                    <span>
-                        DATA STATUS
-                    </span>
-
-                    <strong>
-
-                        <i class="fa-solid fa-circle"></i>
-
-                        Connected
-
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="data-status-middle">
-
-                <span>
-                    Last kilometer update
-                </span>
-
-                <strong>
-                    22 Sep 2026 • 14:30
-                </strong>
-
-            </div>
-
-
-            <button
-                class="data-upload-btn"
-                id="openUploadBtn2"
-            >
-
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                Upload Latest KM
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     MAINTENANCE OVERVIEW
-====================================================== -->
-
-<section
-    class="section"
-    id="reports"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="section-label">
-                    MAINTENANCE ANALYTICS
-                </span>
-
-                <h2>
-                    Maintenance Overview
-                </h2>
-
-                <p>
-                    Current maintenance workload and
-                    service distribution across the fleet.
-                </p>
-
-            </div>
-
-
-            <select
-                class="period-select"
-                id="periodSelect"
-            >
-
-                <option>
-                    September 2026
-                </option>
-
-                <option>
-                    August 2026
-                </option>
-
-                <option>
-                    July 2026
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <div class="analytics-grid">
-
-
-            <!-- Workload -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <h3>
-                            Service Workload
-                        </h3>
-
-                        <span>
-                            Planned services by week
-                        </span>
-
-                    </div>
-
-                    <i class="fa-solid fa-chart-column"></i>
-
-                </div>
-
-
-                <div class="workload-chart">
-
-                    <div class="chart-y">
-
-                        <span>50</span>
-                        <span>40</span>
-                        <span>30</span>
-                        <span>20</span>
-                        <span>10</span>
-                        <span>0</span>
-
-                    </div>
-
-
-                    <div class="chart-area">
-
-                        <div class="grid-lines">
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-
-                        <div class="bars">
-
-                            <div class="bar-item">
-
-                                <div
-                                    class="bar"
-                                    style="height:54%"
-                                ></div>
-
-                                <span>
-                                    W1
-                                </span>
-
-                            </div>
-
-
-                            <div class="bar-item">
-
-                                <div
-                                    class="bar"
-                                    style="height:63%"
-                                ></div>
-
-                                <span>
-                                    W2
-                                </span>
-
-                            </div>
-
-
-                            <div class="bar-item">
-
-                                <div
-                                    class="bar"
-                                    style="height:52%"
-                                ></div>
-
-                                <span>
-                                    W3
-                                </span>
-
-                            </div>
-
-
-                            <div class="bar-item">
-
-                                <div
-                                    class="bar"
-                                    style="height:80%"
-                                ></div>
-
-                                <span>
-                                    W4
-                                </span>
-
-                            </div>
-
-
-                            <div class="bar-item">
-
-                                <div
-                                    class="bar"
-                                    style="height:63%"
-                                ></div>
-
-                                <span>
-                                    W5
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- Service status -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <h3>
-                            Service Status
-                        </h3>
-
-                        <span>
-                            Current service condition
-                        </span>
-
-                    </div>
-
-                    <i class="fa-solid fa-chart-pie"></i>
-
-                </div>
-
-
-                <div class="status-chart">
-
-                    <div class="donut">
-
-                        <div class="donut-center">
-
-                            <strong>
-                                102
-                            </strong>
-
-                            <span>
-                                Services
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="status-legend">
-
-                        <div>
-
-                            <span class="legend-dot yellow"></span>
-
-                            <span>
-                                Due Soon
-                            </span>
-
-                            <strong>
-                                18
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span class="legend-dot blue"></span>
-
-                            <span>
-                                Planned
-                            </span>
-
-                            <strong>
-                                47
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span class="legend-dot red"></span>
-
-                            <span>
-                                Overdue
-                            </span>
-
-                            <strong>
-                                5
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span class="legend-dot green"></span>
-
-                            <span>
-                                Completed
-                            </span>
-
-                            <strong>
-                                32
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- Service type -->
-
-            <div class="panel service-type-panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <h3>
-                            Fleet by Service Type
-                        </h3>
-
-                        <span>
-                            Distribution by maintenance interval
-                        </span>
-
-                    </div>
-
-                    <i class="fa-solid fa-gears"></i>
-
-                </div>
-
-
-                <div class="service-bars">
-
-
-                    <div class="service-bar-row">
-
-                        <div>
-
-                            <span>
-                                Service A
-                            </span>
-
-                            <small>
-                                5K
-                            </small>
-
-                        </div>
-
-                        <div class="service-bar-track">
-
-                            <span
-                                style="width:100%"
-                            ></span>
-
-                        </div>
-
-                        <strong>
-                            42
-                        </strong>
-
-                    </div>
-
-
-                    <div class="service-bar-row">
-
-                        <div>
-
-                            <span>
-                                Service B
-                            </span>
-
-                            <small>
-                                10K
-                            </small>
-
-                        </div>
-
-                        <div class="service-bar-track">
-
-                            <span
-                                style="width:90%"
-                            ></span>
-
-                        </div>
-
-                        <strong>
-                            38
-                        </strong>
-
-                    </div>
-
-
-                    <div class="service-bar-row">
-
-                        <div>
-
-                            <span>
-                                Service C
-                            </span>
-
-                            <small>
-                                20K
-                            </small>
-
-                        </div>
-
-                        <div class="service-bar-track">
-
-                            <span
-                                style="width:50%"
-                            ></span>
-
-                        </div>
-
-                        <strong>
-                            21
-                        </strong>
-
-                    </div>
-
-
-                    <div class="service-bar-row">
-
-                        <div>
-
-                            <span>
-                                Service D
-                            </span>
-
-                            <small>
-                                50K
-                            </small>
-
-                        </div>
-
-                        <div class="service-bar-track">
-
-                            <span
-                                style="width:20%"
-                            ></span>
-
-                        </div>
-
-                        <strong>
-                            8
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     SERVICE PLANNING
-====================================================== -->
-
-<section
-    class="section planning-section"
-    id="planning"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="section-label">
-                    SERVICE PLANNING
-                </span>
-
-                <h2>
-                    12-Month Maintenance Outlook
-                </h2>
-
-                <p>
-                    Overview of planned maintenance
-                    activities across the next 12 months.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="planning-panel">
-
-            <div class="planning-scroll">
-
-                <div class="planning-header">
-
-                    <div class="planning-unit">
+                    <h1>
                         Service
+                        <span>Maintenance</span>
+                        Planning
+                    </h1>
+
+                    <p>
+                        Centralized maintenance planning and fleet
+                        monitoring platform for service readiness,
+                        operational control, and maintenance reporting.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a href="#planning"
+                           class="btn btn-primary">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            View Service Planning
+
+                        </a>
+
+
+                        <a href="#fleet"
+                           class="btn btn-secondary">
+
+                            <i class="fa-solid fa-truck"></i>
+
+                            View Fleet
+
+                        </a>
+
                     </div>
 
-                    <span>Oct</span>
-                    <span>Nov</span>
-                    <span>Dec</span>
-                    <span>Jan</span>
-                    <span>Feb</span>
-                    <span>Mar</span>
-                    <span>Apr</span>
-                    <span>May</span>
-                    <span>Jun</span>
-                    <span>Jul</span>
-                    <span>Aug</span>
-                    <span>Sep</span>
-
                 </div>
 
 
-                <div class="planning-row">
+                <!-- Fleet Status Card -->
 
-                    <strong>
-                        A • 5K
-                    </strong>
+                <div class="hero-status-card">
 
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
+                    <div class="status-card-header">
 
-                </div>
+                        <span>
+                            FLEET STATUS
+                        </span>
+
+                        <span class="live-badge">
+                            LIVE
+                        </span>
+
+                    </div>
 
 
-                <div class="planning-row">
-
-                    <strong>
-                        B • 10K
-                    </strong>
-
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i class="active"></i>
-
-                </div>
+                    <div class="status-number">
+                        302
+                    </div>
 
 
-                <div class="planning-row">
-
-                    <strong>
-                        C • 20K
-                    </strong>
-
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-
-                </div>
+                    <div class="status-label">
+                        Active Units
+                    </div>
 
 
-                <div class="planning-row">
+                    <div class="readiness">
 
-                    <strong>
-                        D • 50K
-                    </strong>
+                        <div class="readiness-header">
 
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i class="active"></i>
-                    <i></i>
-                    <i></i>
+                            <span>
+                                Maintenance readiness
+                            </span>
+
+                            <strong>
+                                92%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div class="progress-bar"
+                                 style="width:92%;">
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
 
 
-<!-- ======================================================
-     PRIORITY SERVICE
-====================================================== -->
+        <!-- =====================================================
+             KPI SECTION
+        ====================================================== -->
 
-<section
-    class="section priority-section"
-    id="fleet"
->
+        <section class="kpi-section">
 
-    <div class="container">
+            <div class="container kpi-grid">
 
-        <div class="section-heading">
+
+                <!-- Active Units -->
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <span class="kpi-label">
+                            ACTIVE UNITS
+                        </span>
+
+                        <strong class="kpi-value">
+                            302
+                        </strong>
+
+                        <small>
+                            Fleet currently active
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Due Soon -->
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon warning">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <span class="kpi-label">
+                            DUE SOON
+                        </span>
+
+                        <strong class="kpi-value">
+                            18
+                        </strong>
+
+                        <small>
+                            Units requiring service
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Overdue -->
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon danger">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <span class="kpi-label">
+                            OVERDUE
+                        </span>
+
+                        <strong class="kpi-value">
+                            5
+                        </strong>
+
+                        <small>
+                            Requires attention
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Monthly -->
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon success">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <span class="kpi-label">
+                            THIS MONTH
+                        </span>
+
+                        <strong class="kpi-value">
+                            47
+                        </strong>
+
+                        <small>
+                            Planned services
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MAINTENANCE OVERVIEW
+        ====================================================== -->
+
+        <section class="section" id="dashboard">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            MAINTENANCE ANALYTICS
+                        </span>
+
+                        <h2>
+                            Maintenance Overview
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Current maintenance workload and service
+                        distribution across the fleet.
+                    </p>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+
+                    <!-- Workload -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    SERVICE WORKLOAD
+                                </span>
+
+                                <h3>
+                                    Maintenance Schedule
+                                </h3>
+
+                            </div>
+
+                            <button class="icon-button"
+                                    type="button">
+
+                                <i class="fa-solid fa-ellipsis"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="chart-placeholder">
+
+                            <div class="chart-message">
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+                                <strong>
+                                    Maintenance workload
+                                </strong>
+
+                                <span>
+                                    Chart will be connected
+                                    to the spreadsheet database.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Service Distribution -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    SERVICE DISTRIBUTION
+                                </span>
+
+                                <h3>
+                                    Service Category
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-list">
+
+
+                            <div class="service-item">
+
+                                <div class="service-info">
+
+                                    <span class="service-dot service-a"></span>
+
+                                    <span>
+                                        Service A
+                                    </span>
+
+                                </div>
+
+                                <strong>
+                                    42%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="service-item">
+
+                                <div class="service-info">
+
+                                    <span class="service-dot service-b"></span>
+
+                                    <span>
+                                        Service B
+                                    </span>
+
+                                </div>
+
+                                <strong>
+                                    28%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="service-item">
+
+                                <div class="service-info">
+
+                                    <span class="service-dot service-c"></span>
+
+                                    <span>
+                                        Service C
+                                    </span>
+
+                                </div>
+
+                                <strong>
+                                    18%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="service-item">
+
+                                <div class="service-info">
+
+                                    <span class="service-dot service-d"></span>
+
+                                    <span>
+                                        Service D
+                                    </span>
+
+                                </div>
+
+                                <strong>
+                                    12%
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SERVICE PLANNING
+        ====================================================== -->
+
+        <section class="section section-light"
+                 id="planning">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            PLANNER WORKSPACE
+                        </span>
+
+                        <h2>
+                            Service Planning
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Monitor upcoming vehicle maintenance
+                        requirements based on current odometer data.
+                    </p>
+
+                </div>
+
+
+                <!-- Filters -->
+
+                <div class="filter-panel">
+
+                    <div class="filter-group">
+
+                        <label for="searchTK">
+                            TK Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="searchTK"
+                                placeholder="Search TK Number..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="hubFilter">
+                            HUB
+                        </label>
+
+                        <select id="hubFilter">
+
+                            <option value="">
+                                All HUB
+                            </option>
+
+                            <option value="BALIKPAPAN">
+                                Balikpapan
+                            </option>
+
+                            <option value="BATU HIJAU">
+                                Batu Hijau
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="statusFilter">
+                            Status
+                        </label>
+
+                        <select id="statusFilter">
+
+                            <option value="">
+                                All Status
+                            </option>
+
+                            <option value="Rental">
+                                Rental
+                            </option>
+
+                            <option value="Available">
+                                Available
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button class="btn btn-primary filter-button"
+                            type="button">
+
+                        <i class="fa-solid fa-filter"></i>
+
+                        Apply Filter
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Planning Table -->
+
+                <div class="table-panel">
+
+                    <div class="table-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                UPCOMING SERVICE
+                            </span>
+
+                            <h3>
+                                Service Planning List
+                            </h3>
+
+                        </div>
+
+
+                        <button class="btn btn-outline"
+                                type="button">
+
+                            <i class="fa-solid fa-download"></i>
+
+                            Export
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        TK NUMBER
+                                    </th>
+
+                                    <th>
+                                        CUSTOMER
+                                    </th>
+
+                                    <th>
+                                        HUB
+                                    </th>
+
+                                    <th>
+                                        ODOMETER
+                                    </th>
+
+                                    <th>
+                                        NEXT SERVICE
+                                    </th>
+
+                                    <th>
+                                        REMAINING
+                                    </th>
+
+                                    <th>
+                                        STATUS
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="planningTable">
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            TK6972
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        PT. Amman Mineral
+                                        Nusa Tenggara
+                                    </td>
+
+                                    <td>
+                                        Batu Hijau
+                                    </td>
+
+                                    <td>
+                                        1,232 KM
+                                    </td>
+
+                                    <td>
+                                        5,000 KM
+                                    </td>
+
+                                    <td>
+                                        3,768 KM
+                                    </td>
+
+                                    <td>
+                                        <span class="status-badge normal">
+                                            Normal
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            TK6973
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        PT. Amman Mineral
+                                        Nusa Tenggara
+                                    </td>
+
+                                    <td>
+                                        Batu Hijau
+                                    </td>
+
+                                    <td>
+                                        1,638 KM
+                                    </td>
+
+                                    <td>
+                                        5,000 KM
+                                    </td>
+
+                                    <td>
+                                        3,362 KM
+                                    </td>
+
+                                    <td>
+                                        <span class="status-badge normal">
+                                            Normal
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            TK6977
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        PT. Amman Mineral
+                                        Nusa Tenggara
+                                    </td>
+
+                                    <td>
+                                        Batu Hijau
+                                    </td>
+
+                                    <td>
+                                        1,611 KM
+                                    </td>
+
+                                    <td>
+                                        5,000 KM
+                                    </td>
+
+                                    <td>
+                                        3,389 KM
+                                    </td>
+
+                                    <td>
+                                        <span class="status-badge warning">
+                                            Due Soon
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <div class="table-footer">
+
+                        <span>
+                            Showing sample planning data
+                        </span>
+
+                        <button class="text-button"
+                                type="button">
+
+                            View All
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FLEET
+        ====================================================== -->
+
+        <section class="section"
+                 id="fleet">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            FLEET MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Fleet Readiness
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Fleet information will be connected
+                        to the master spreadsheet.
+                    </p>
+
+                </div>
+
+
+                <div class="fleet-cards">
+
+
+                    <div class="fleet-card">
+
+                        <div class="fleet-card-icon">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                TOTAL FLEET
+                            </span>
+
+                            <strong>
+                                302
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fleet-card">
+
+                        <div class="fleet-card-icon warning">
+                            <i class="fa-solid fa-wrench"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                IN MAINTENANCE
+                            </span>
+
+                            <strong>
+                                12
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fleet-card">
+
+                        <div class="fleet-card-icon success">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                READY
+                            </span>
+
+                            <strong>
+                                290
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             REPORTS
+        ====================================================== -->
+
+        <section class="section section-light"
+                 id="reports">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            MANAGEMENT REPORT
+                        </span>
+
+                        <h2>
+                            Maintenance Reports
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Generate maintenance planning reports
+                        for operational and management review.
+                    </p>
+
+                </div>
+
+
+                <div class="report-grid">
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Monthly Service Plan
+                            </h3>
+
+                            <p>
+                                View planned maintenance
+                                for the selected month.
+                            </p>
+
+                            <button class="text-button">
+                                Open Report
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Service Summary
+                            </h3>
+
+                            <p>
+                                Review service distribution
+                                and fleet maintenance status.
+                            </p>
+
+                            <button class="text-button">
+                                Open Report
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Fleet Performance
+                            </h3>
+
+                            <p>
+                                Analyze fleet readiness
+                                and maintenance workload.
+                            </p>
+
+                            <button class="text-button">
+                                Open Report
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
 
             <div>
 
-                <span class="section-label">
-                    PRIORITY SERVICE
-                </span>
-
-                <h2>
-                    Units Requiring Attention
-                </h2>
-
-                <p>
-                    Vehicles approaching their next
-                    scheduled maintenance interval.
-                </p>
-
-            </div>
-
-            <a
-                href="#"
-                class="view-all"
-            >
-                View all units
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="priority-grid">
-
-
-            <article class="unit-card">
-
-                <div class="unit-header">
-
-                    <div>
-
-                        <strong>
-                            TK4138
-                        </strong>
-
-                        <span>
-                            Rental Unit
-                        </span>
-
-                    </div>
-
-                    <span class="priority-badge urgent">
-                        3 Days
-                    </span>
-
-                </div>
-
-
-                <div class="unit-odo">
-
-                    <span>
-                        Current Odometer
-                    </span>
-
-                    <strong>
-                        126,850 KM
-                    </strong>
-
-                </div>
-
-
-                <div class="unit-progress">
-
-                    <div>
-
-                        <span>
-                            Next Service
-                        </span>
-
-                        <strong>
-                            130,000 KM
-                        </strong>
-
-                    </div>
-
-                    <div class="progress-track">
-
-                        <span
-                            style="width:82%"
-                        ></span>
-
-                    </div>
-
-                    <small>
-                        3,150 KM remaining
-                    </small>
-
-                </div>
-
-
-                <div class="unit-footer">
-
-                    <span>
-                        Service A • 5K
-                    </span>
-
-                    <strong>
-                        25 Sep 2026
-                    </strong>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="unit-card">
-
-                <div class="unit-header">
-
-                    <div>
-
-                        <strong>
-                            TK5221
-                        </strong>
-
-                        <span>
-                            Rental Unit
-                        </span>
-
-                    </div>
-
-                    <span class="priority-badge warning">
-                        7 Days
-                    </span>
-
-                </div>
-
-
-                <div class="unit-odo">
-
-                    <span>
-                        Current Odometer
-                    </span>
-
-                    <strong>
-                        78,950 KM
-                    </strong>
-
-                </div>
-
-
-                <div class="unit-progress">
-
-                    <div>
-
-                        <span>
-                            Next Service
-                        </span>
-
-                        <strong>
-                            80,000 KM
-                        </strong>
-
-                    </div>
-
-                    <div class="progress-track">
-
-                        <span
-                            style="width:72%"
-                        ></span>
-
-                    </div>
-
-                    <small>
-                        1,050 KM remaining
-                    </small>
-
-                </div>
-
-
-                <div class="unit-footer">
-
-                    <span>
-                        Service B • 10K
-                    </span>
-
-                    <strong>
-                        29 Sep 2026
-                    </strong>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="unit-card">
-
-                <div class="unit-header">
-
-                    <div>
-
-                        <strong>
-                            TK6132
-                        </strong>
-
-                        <span>
-                            Rental Unit
-                        </span>
-
-                    </div>
-
-                    <span class="priority-badge normal">
-                        12 Days
-                    </span>
-
-                </div>
-
-
-                <div class="unit-odo">
-
-                    <span>
-                        Current Odometer
-                    </span>
-
-                    <strong>
-                        99,120 KM
-                    </strong>
-
-                </div>
-
-
-                <div class="unit-progress">
-
-                    <div>
-
-                        <span>
-                            Next Service
-                        </span>
-
-                        <strong>
-                            100,000 KM
-                        </strong>
-
-                    </div>
-
-                    <div class="progress-track">
-
-                        <span
-                            style="width:61%"
-                        ></span>
-
-                    </div>
-
-                    <small>
-                        880 KM remaining
-                    </small>
-
-                </div>
-
-
-                <div class="unit-footer">
-
-                    <span>
-                        Service C • 20K
-                    </span>
-
-                    <strong>
-                        04 Oct 2026
-                    </strong>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
-<footer class="footer">
-
-    <div class="container footer-container">
-
-        <div>
-
-            <img
-                src="assets/images/transkon-logo.png"
-                alt="Transkon"
-                class="footer-logo"
-            >
-
-            <p>
-                Fleet Maintenance & Service Planning
-            </p>
-
-        </div>
-
-
-        <div class="footer-right">
-
-            <span>
-                Internal Planner Dashboard
-            </span>
-
-            <span>
-                © 2026 Transkon
-            </span>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-
-<!-- ======================================================
-     UPLOAD MODAL
-====================================================== -->
-
-<div
-    class="modal"
-    id="uploadModal"
->
-
-    <div class="modal-overlay"></div>
-
-
-    <div class="modal-card">
-
-        <button
-            class="modal-close"
-            id="closeUploadBtn"
-        >
-
-            <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-
-        <div class="modal-header">
-
-            <div class="modal-icon">
-
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-
-            </div>
-
-            <div>
-
-                <h2>
-                    Upload Latest Kilometer
-                </h2>
-
-                <p>
-                    Update the latest fleet kilometer data.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <label
-            class="upload-area"
-            for="excelFile"
-        >
-
-            <i class="fa-solid fa-file-excel"></i>
-
-            <strong>
-                Drop Excel file here
-            </strong>
-
-            <span>
-                or click to browse
-            </span>
-
-            <small>
-                Supported format: .xlsx, .xls
-            </small>
-
-            <input
-                type="file"
-                id="excelFile"
-                accept=".xlsx,.xls"
-                hidden
-            >
-
-        </label>
-
-
-        <div
-            class="file-selected"
-            id="fileSelected"
-        ></div>
-
-
-        <div class="required-columns">
-
-            <strong>
-                Required columns
-            </strong>
-
-            <div>
+                <strong>
+                    TRANSKON
+                </strong>
 
                 <span>
-                    TK NUMBER
+                    Fleet Maintenance Planning
+                </span>
+
+            </div>
+
+
+            <div class="footer-right">
+
+                <span>
+                    Maintenance Planner
                 </span>
 
                 <span>
-                    ODOMETER KM
+                    © 2026 Transkon
                 </span>
 
             </div>
 
         </div>
 
-
-        <div class="modal-actions">
-
-            <button
-                class="cancel-btn"
-                id="cancelUploadBtn"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="validate-btn"
-                id="validateBtn"
-                disabled
-            >
-
-                <i class="fa-solid fa-check"></i>
-
-                Validate Data
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+    </footer>
 
 
 
-<!-- SheetJS -->
-<script
-    src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"
-></script>
-
-
-<!-- Main JS -->
-<script src="js/app.js"></script>
-
+    <!-- Main JavaScript -->
+    <script src="js/script.js"></script>
 
 </body>
-
 </html>
