@@ -72,6 +72,35 @@
                     Reports
                 </a>
 
+                <div class="nav-dropdown" id="navUpdateData">
+
+                    <button class="nav-link nav-dropdown-trigger" type="button">
+                        Update Data
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+
+                    <div class="nav-dropdown-menu">
+
+                        <a href="#update-data" data-tab="excel" class="nav-dropdown-item">
+                            <i class="fa-solid fa-file-excel"></i>
+                            <span>
+                                <strong>Upload Excel</strong>
+                                <small>Update banyak unit sekaligus</small>
+                            </span>
+                        </a>
+
+                        <a href="#update-data" data-tab="manual" class="nav-dropdown-item">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>
+                                <strong>Update Manual</strong>
+                                <small>Update satu TK Number</small>
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+
             </nav>
 
 
@@ -669,14 +698,18 @@
                         </div>
 
 
-                        <button class="btn btn-outline"
-                                type="button">
+                        <div class="table-header-actions">
 
-                            <i class="fa-solid fa-download"></i>
+                            <button class="btn btn-outline"
+                                    type="button">
 
-                            Export
+                                <i class="fa-solid fa-download"></i>
 
-                        </button>
+                                Export
+
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -1239,6 +1272,157 @@
     </main>
 
 
+    <!-- =====================================================
+         UPDATE DATA (Upload Excel / Update Manual)
+    ====================================================== -->
+
+    <section class="section section-light" id="update-data">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        SERVICE PLANNING
+                    </span>
+
+                    <h2>
+                        Update Data
+                    </h2>
+
+                </div>
+
+                <p>
+                    Update odometer terbaru per unit dan tersimpan
+                    langsung ke Google Sheets berdasarkan TK Number.
+                </p>
+
+            </div>
+
+
+            <div class="report-detail" id="updateDataDetail">
+
+                <div class="report-detail-header">
+
+                    <div class="report-tabs">
+
+                        <button class="report-tab active"
+                                data-updatetab="excel"
+                                type="button">
+                            <i class="fa-solid fa-file-excel"></i>
+                            Upload Excel
+                        </button>
+
+                        <button class="report-tab"
+                                data-updatetab="manual"
+                                type="button">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            Update Manual
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Upload Excel -->
+                <div class="report-panel" data-updatetab="excel">
+
+                    <div class="upload-zone" id="excelDropZone">
+
+                        <input type="file" id="excelFileInput"
+                               accept=".xlsx,.xls,.csv" hidden>
+
+                        <i class="fa-solid fa-file-arrow-up"></i>
+
+                        <strong>Klik untuk pilih file, atau drag & drop</strong>
+
+                        <span>
+                            Format .xlsx / .xls / .csv — kolom yang dibutuhkan:
+                            <b>TK Number</b>, <b>Odometer</b>. Tanggal update
+                            otomatis diisi hari ini saat kamu upload.
+                        </span>
+
+                        <span class="upload-file-name" id="excelFileName"></span>
+
+                    </div>
+
+                    <div id="excelPreviewWrap" hidden>
+
+                        <div class="table-panel">
+
+                            <div class="table-header">
+                                <div>
+                                    <span class="panel-label">PREVIEW</span>
+                                    <h4 id="excelPreviewTitle">0 baris terbaca</h4>
+                                </div>
+
+                                <button class="btn btn-primary"
+                                        id="excelUploadBtn"
+                                        type="button">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    Upload ke Spreadsheet
+                                </button>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table class="report-table" id="excelPreviewTable"></table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-message" id="excelFormMessage"></div>
+
+                </div>
+
+
+                <!-- Update Manual -->
+                <div class="report-panel" data-updatetab="manual" hidden>
+
+                    <form id="odometerForm" class="inline-form">
+
+                        <div class="form-group">
+                            <label for="inputTkNumber">TK Number</label>
+                            <input type="text" id="inputTkNumber"
+                                   placeholder="Contoh: TK6972" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputOdometer">Odometer Terbaru (KM)</label>
+                            <input type="number" id="inputOdometer"
+                                   min="1" placeholder="Contoh: 45230" required>
+                        </div>
+
+                        <div class="form-hint">
+                            <i class="fa-regular fa-calendar-check"></i>
+                            Tanggal update otomatis diisi hari ini
+                            saat kamu klik simpan.
+                        </div>
+
+                        <button class="btn btn-primary form-submit"
+                                id="odometerSubmitBtn"
+                                type="submit">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            Simpan ke Spreadsheet
+                        </button>
+
+                    </form>
+
+                    <div class="form-message" id="odometerFormMessage"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
 
     <!-- =====================================================
          FOOTER
@@ -1279,8 +1463,14 @@
 
 
 
+    <!-- SheetJS (for reading uploaded Excel files) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
     <!-- Report data (computed from SERVICE_PLAN.xlsx master sheet) -->
     <script src="js/report-data.js?v=20260923"></script>
+
+    <!-- Odometer update feature (writes to Google Sheets) -->
+    <script src="js/odometer-update.js?v=20260923"></script>
 
     <!-- Main JavaScript -->
     <script src="js/script.js?v=20260923"></script>
