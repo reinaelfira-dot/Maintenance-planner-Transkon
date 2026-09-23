@@ -1,1 +1,314 @@
 
+/* =========================================================
+   TRANSKON MAINTENANCE PLANNER — MAIN SCRIPT
+   Fills the dashboard with real numbers computed from the
+   master spreadsheet (REPORT_DATA, see js/report-data.js)
+   and renders the three Reports tables.
+   ========================================================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+    fillDashboardNumbers();
+    setupNav();
+    setupReportCards();
+    renderHubReport();
+    renderPmReport();
+    renderCostReport();
+});
+
+
+/* ---------------------------------------------------------
+   Helpers
+--------------------------------------------------------- */
+
+function fmt(n) {
+    return Number(n).toLocaleString('en-US');
+}
+
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
+
+
+/* ---------------------------------------------------------
+   Dashboard KPI / Hero / Fleet numbers
+   (computed live from REPORT_DATA.meta)
+--------------------------------------------------------- */
+
+function fillDashboardNumbers() {
+    const meta = (typeof REPORT_DATA !== 'undefined') ? REPORT_DATA.meta : null;
+    if (!meta) return;
+
+    // Hero status card
+    setText('heroActiveUnits', fmt(meta.totalFleet));
+    setText('heroReadiness', meta.readiness + '%');
+    const readinessBar = document.getElementById('heroReadinessBar');
+    if (readinessBar) readinessBar.style.width = meta.readiness + '%';
+
+    // KPI cards
+    setText('kpiActiveUnits', fmt(meta.totalFleet));
+    setText('kpiDueSoon', fmt(meta.dueSoon));
+    setText('kpiOverdue', fmt(meta.overdue));
+    setText('kpiThisMonth', fmt(meta.planTotalUnits));
+    setText('kpiThisMonthLabel', meta.planMonth + ' planned services');
+
+    // Fleet cards
+    setText('fleetTotal', fmt(meta.totalFleet));
+    setText('fleetRental', fmt(meta.totalRental));
+    setText('fleetSpare', fmt(meta.totalSpare));
+
+    // Service category distribution
+    if (meta.serviceCategoryPct) {
+        setText('svcPctA', meta.serviceCategoryPct.A + '%');
+        setText('svcPctB', meta.serviceCategoryPct.B + '%');
+        setText('svcPctC', meta.serviceCategoryPct.C + '%');
+        setText('svcPctD', meta.serviceCategoryPct.D + '%');
+    }
+
+    // Weekly workload bar chart (Sept Plan totals by week)
+    renderWorkloadChart();
+
+    // "as of" notes
+    document.querySelectorAll('.data-as-of').forEach(el => {
+        el.textContent = 'Live from master data · as of ' + meta.dataAsOf;
+    });
+    document.querySelectorAll('.plan-month-label').forEach(el => {
+        el.textContent = meta.planMonth;
+    });
+}
+
+
+function renderWorkloadChart() {
+    const container = document.getElementById('workloadChart');
+    if (!container || typeof REPORT_DATA === 'undefined') return;
+
+    const totals = REPORT_DATA.hubPerformance.allUnit.find(r => r.hub === 'Total');
+    if (!totals) return;
+
+    const weeks = ['1', '2', '3', '4', '5'];
+    const max = Math.max(...weeks.map(w => totals[w]), 1);
+
+    container.innerHTML = `
+        <div class="chart-message chart-message-small">
+            <span>Planned services per week — ${REPORT_DATA.meta.planMonth}</span>
+        </div>
+        <div class="bar-chart">
+            ${weeks.map(w => `
+                <div class="bar-col">
+                    <div class="bar-track">
+                        <div class="bar-fill" style="height:${Math.max((totals[w] / max) * 100, totals[w] > 0 ? 6 : 2)}%"></div>
+                    </div>
+                    <strong>${totals[w]}</strong>
+                    <span>W${w}</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+
+/* ---------------------------------------------------------
+   Nav active state
+--------------------------------------------------------- */
+
+function setupNav() {
+    const links = document.querySelectorAll('.nav-link');
+    const sections = ['home', 'planning', 'fleet', 'reports']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                links.forEach(l => l.classList.remove('active'));
+                const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                if (match) match.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+}
+
+
+/* ---------------------------------------------------------
+   Report cards -> open detail panel on a given tab
+--------------------------------------------------------- */
+
+function setupReportCards() {
+    const detail = document.getElementById('reportDetail');
+    const closeBtn = document.getElementById('closeReportDetail');
+    const tabs = document.querySelectorAll('.report-tab');
+    const cards = document.querySelectorAll('.report-card[data-report]');
+
+    function openReport(key) {
+        if (!detail) return;
+        detail.hidden = false;
+        switchTab(key);
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function switchTab(key) {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.report === key));
+        document.querySelectorAll('.report-panel').forEach(p => {
+            p.hidden = p.dataset.report !== key;
+        });
+    }
+
+    cards.forEach(card => {
+        card.querySelector('.text-button')?.addEventListener('click', () => {
+            openReport(card.dataset.report);
+        });
+    });
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.report));
+    });
+
+    closeBtn?.addEventListener('click', () => {
+        if (detail) detail.hidden = true;
+    });
+}
+
+
+/* ---------------------------------------------------------
+   Shared table renderer for Hub / PM performance
+   (same column layout: Aug placeholder | Jan-Aug placeholder | Sept Plan live)
+--------------------------------------------------------- */
+
+function renderPerformanceTable(rows, labelKey, labelHeader) {
+    const weeks = ['1', '2', '3', '4', '5'];
+
+    const theadGroups = `
+        <tr>
+            <th rowspan="2">${labelHeader}</th>
+            <th colspan="5" class="th-group th-placeholder">AUG <span class="pending-tag">pending</span></th>
+            <th rowspan="2" class="th-placeholder">JAN–AUG<br>ACCUMULATED</th>
+            <th colspan="6" class="th-group th-live">SEPT (PLAN) <span class="live-tag">live</span></th>
+        </tr>
+        <tr>
+            <th class="th-placeholder">W1</th>
+            <th class="th-placeholder">W2</th>
+            <th class="th-placeholder">W3</th>
+            <th class="th-placeholder">W4</th>
+            <th class="th-placeholder">TOTAL</th>
+            <th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th><th>TOTAL</th>
+        </tr>
+    `;
+
+    const bodyRows = rows.map(r => {
+        const isTotal = r[labelKey] === 'Total';
+        const cells = weeks.map(w => `<td>${r[w]}</td>`).join('');
+        return `
+            <tr class="${isTotal ? 'row-total' : ''}">
+                <td><strong>${r[labelKey]}</strong></td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+                ${cells}
+                <td><strong>${r.total}</strong></td>
+            </tr>
+        `;
+    }).join('');
+
+    return `<thead>${theadGroups}</thead><tbody>${bodyRows}</tbody>`;
+}
+
+
+function renderHubReport() {
+    if (typeof REPORT_DATA === 'undefined') return;
+    const allUnitTable = document.getElementById('hubTableAll');
+    const rentalTable = document.getElementById('hubTableRental');
+
+    if (allUnitTable) {
+        allUnitTable.innerHTML = renderPerformanceTable(
+            REPORT_DATA.hubPerformance.allUnit, 'hub', 'HUB LOCATION'
+        );
+    }
+    if (rentalTable) {
+        rentalTable.innerHTML = renderPerformanceTable(
+            REPORT_DATA.hubPerformance.rental, 'hub', 'HUB LOCATION'
+        );
+    }
+}
+
+
+function renderPmReport() {
+    if (typeof REPORT_DATA === 'undefined') return;
+    const allUnitTable = document.getElementById('pmTableAll');
+    const rentalTable = document.getElementById('pmTableRental');
+
+    if (allUnitTable) {
+        allUnitTable.innerHTML = renderPerformanceTable(
+            REPORT_DATA.pmPerformance.allUnit, 'category', 'VEHICLE MILEAGE'
+        );
+    }
+    if (rentalTable) {
+        rentalTable.innerHTML = renderPerformanceTable(
+            REPORT_DATA.pmPerformance.rental, 'category', 'VEHICLE MILEAGE'
+        );
+    }
+}
+
+
+/* ---------------------------------------------------------
+   Cost by Mileage table
+   Unit counts are live (from master data), Cost columns
+   are placeholders until a cost data source is connected.
+--------------------------------------------------------- */
+
+function renderCostReport() {
+    if (typeof REPORT_DATA === 'undefined') return;
+    const table = document.getElementById('costTable');
+    if (!table) return;
+
+    const thead = `
+        <thead>
+            <tr>
+                <th>MILEAGE</th>
+                <th>AGE</th>
+                <th class="th-live">UNIT <span class="live-tag">live</span></th>
+                <th class="th-placeholder">COST / UNIT <span class="pending-tag">pending</span></th>
+                <th class="th-placeholder">AMOUNT <span class="pending-tag">pending</span></th>
+            </tr>
+        </thead>
+    `;
+
+    let grandTotal = 0;
+    const bodyRows = REPORT_DATA.mileageDistribution.map(bracket => {
+        grandTotal += bracket.total;
+        const ageRows = bracket.ageRows.map((ar, i) => `
+            <tr>
+                ${i === 0 ? `<td rowspan="${bracket.ageRows.length + 1}"><strong>${bracket.bracket}</strong></td>` : ''}
+                <td>${ar.age}</td>
+                <td>${ar.unit}</td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+            </tr>
+        `).join('');
+        return ageRows + `
+            <tr class="row-subtotal">
+                <td><strong>Subtotal</strong></td>
+                <td><strong>${bracket.total}</strong></td>
+                <td class="cell-placeholder">–</td>
+                <td class="cell-placeholder">–</td>
+            </tr>
+        `;
+    }).join('');
+
+    const totalRow = `
+        <tr class="row-total">
+            <td colspan="2"><strong>Total</strong></td>
+            <td><strong>${grandTotal}</strong></td>
+            <td class="cell-placeholder">–</td>
+            <td class="cell-placeholder">–</td>
+        </tr>
+    `;
+
+    table.innerHTML = thead + `<tbody>${bodyRows}${totalRow}</tbody>`;
+}
