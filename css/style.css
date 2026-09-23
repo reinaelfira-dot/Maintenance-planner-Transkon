@@ -1604,6 +1604,256 @@ td strong {
     margin-top: 12px;
 }
 
+.report-card {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   WEEKLY WORKLOAD BAR CHART
+   ========================================================= */
+
+.chart-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+    min-height: 220px;
+    justify-content: center;
+}
+
+.chart-message-small {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    height: 160px;
+    padding-top: 8px;
+}
+
+.bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.bar-track {
+    flex: 1;
+    width: 100%;
+    max-width: 40px;
+    display: flex;
+    align-items: flex-end;
+    background: var(--red-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    width: 100%;
+    background: linear-gradient(180deg, var(--red), var(--red-dark));
+    border-radius: 8px 8px 0 0;
+    transition: height 0.4s ease;
+}
+
+.bar-col strong {
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.bar-col span {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   REPORT DETAIL (Hub / PM / Cost tables)
+   ========================================================= */
+
+.report-detail {
+    margin-top: 28px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.report-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: #f8f9fb;
+    flex-wrap: wrap;
+}
+
+.report-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.report-tab {
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.report-tab:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.report-tab.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: white;
+}
+
+.report-panel {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.report-panel-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+}
+
+.data-as-of {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+}
+
+.data-as-of::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.report-panel-note {
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.report-panel .table-panel {
+    box-shadow: none;
+}
+
+.report-panel h4 {
+    color: var(--navy);
+    font-size: 13px;
+}
+
+/* report tables: grouped headers + live/pending states */
+
+table.report-table {
+    min-width: 980px;
+}
+
+table.report-table th,
+table.report-table td {
+    text-align: center;
+    white-space: nowrap;
+}
+
+table.report-table th:first-child,
+table.report-table td:first-child {
+    text-align: left;
+}
+
+table.report-table .th-group {
+    text-align: center;
+    border-left: 1px solid var(--border);
+}
+
+table.report-table .th-placeholder {
+    color: var(--text-muted);
+    background: #fbfbfc;
+}
+
+table.report-table .th-live {
+    color: var(--red-dark);
+    background: var(--red-light);
+    border-left: 1px solid var(--border);
+}
+
+table.report-table .live-tag,
+table.report-table .pending-tag {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+table.report-table .live-tag {
+    background: var(--green);
+    color: white;
+}
+
+table.report-table .pending-tag {
+    background: var(--text-muted);
+    color: white;
+}
+
+table.report-table .cell-placeholder {
+    color: var(--text-muted);
+    background: #fbfbfc;
+}
+
+table.report-table .row-total td {
+    background: #f8f9fb;
+    color: var(--navy);
+    border-top: 2px solid var(--border);
+}
+
+table.report-table .row-subtotal td {
+    background: #fcfcfd;
+    color: var(--navy);
+    font-style: italic;
+}
+
 
 /* =========================================================
    FOOTER
