@@ -237,7 +237,7 @@ img {
 
     gap: 4px;
 
-    margin-left: auto;
+    margin: 0 auto;
 }
 
 .nav-link {
