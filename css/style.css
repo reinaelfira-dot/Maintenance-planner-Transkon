@@ -289,6 +289,130 @@ img {
 
 
 /* =========================================================
+   NAV DROPDOWN (Update Data)
+   ========================================================= */
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    min-height: 78px;
+    padding: 0 18px;
+
+    background: none;
+    border: none;
+
+    color: #526074;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.nav-dropdown-trigger:hover {
+    color: var(--navy);
+}
+
+.nav-dropdown-trigger i {
+    font-size: 9px;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown.open .nav-dropdown-trigger {
+    color: var(--red);
+}
+
+.nav-dropdown.open .nav-dropdown-trigger i {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+
+    width: 260px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+
+    padding: 8px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+
+    transition: all 0.15s ease;
+
+    z-index: 1100;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    color: var(--navy);
+
+    transition: background 0.15s ease;
+}
+
+.nav-dropdown-item:hover {
+    background: var(--red-light);
+}
+
+.nav-dropdown-item i {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: var(--red-light);
+    color: var(--red);
+
+    font-size: 13px;
+}
+
+.nav-dropdown-item span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-dropdown-item strong {
+    font-size: 12.5px;
+}
+
+.nav-dropdown-item small {
+    color: var(--text-muted);
+    font-size: 10.5px;
+}
+
+
+/* =========================================================
    SYSTEM STATUS
    ========================================================= */
 
@@ -1787,6 +1911,10 @@ table.report-table {
     min-width: 980px;
 }
 
+#excelPreviewTable {
+    min-width: 0;
+}
+
 table.report-table th,
 table.report-table td {
     text-align: center;
@@ -1852,6 +1980,205 @@ table.report-table .row-subtotal td {
     background: #fcfcfd;
     color: var(--navy);
     font-style: italic;
+}
+
+
+/* =========================================================
+   TABLE HEADER ACTIONS (multiple buttons)
+   ========================================================= */
+
+.table-header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   FORM (Update Manual / Excel upload)
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 11px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    font-size: 13px;
+    color: var(--navy);
+
+    transition: border-color 0.15s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--red);
+}
+
+.form-message {
+    min-height: 18px;
+    margin-bottom: 12px;
+
+    font-size: 11.5px;
+    line-height: 1.6;
+}
+
+.form-message.success {
+    color: var(--green);
+}
+
+.form-message.error {
+    color: var(--red);
+}
+
+.form-submit {
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   INLINE FORM (Update Manual — no popup)
+   ========================================================= */
+
+.inline-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.inline-form .form-group {
+    flex: 1 1 200px;
+    margin-bottom: 0;
+}
+
+.inline-form .form-submit {
+    width: auto;
+    white-space: nowrap;
+    padding: 12px 24px;
+}
+
+.form-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+    border-radius: 10px;
+
+    background: #f8f9fb;
+    color: var(--text-soft);
+
+    font-size: 11.5px;
+    white-space: nowrap;
+}
+
+.form-hint i {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   EXCEL UPLOAD ZONE
+   ========================================================= */
+
+.upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+
+    padding: 40px 24px;
+
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+
+    background: #fbfbfc;
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.dragover {
+    border-color: var(--red);
+    background: var(--red-light);
+}
+
+.upload-zone i {
+    font-size: 28px;
+    color: var(--red);
+    margin-bottom: 6px;
+}
+
+.upload-zone strong {
+    color: var(--navy);
+    font-size: 13.5px;
+}
+
+.upload-zone span {
+    color: var(--text-muted);
+    font-size: 11.5px;
+    line-height: 1.6;
+    max-width: 420px;
+}
+
+.upload-zone span b {
+    color: var(--text-soft);
+}
+
+.upload-file-name {
+    margin-top: 6px;
+    color: var(--red-dark) !important;
+    font-weight: 700;
+}
+
+#excelPreviewWrap {
+    margin-top: 20px;
+}
+
+.upload-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.upload-status.pending {
+    background: #f1f3f6;
+    color: var(--text-muted);
+}
+
+.upload-status.success {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.upload-status.error {
+    background: var(--red-light);
+    color: var(--red-dark);
+    cursor: help;
 }
 
 
