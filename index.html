@@ -41,7 +41,7 @@
 
     <img
         class="brand-logo"
-        src="assets/images/logo-transkon-transparent.png"
+        src="assets/images/logo-transkon.png"
         alt="Transkon Rent">
 
     <span class="brand-divider"></span>
@@ -169,7 +169,7 @@
                     </div>
 
 
-                    <div class="status-number">
+                    <div class="status-number" id="heroActiveUnits">
                         302
                     </div>
 
@@ -187,7 +187,7 @@
                                 Maintenance readiness
                             </span>
 
-                            <strong>
+                            <strong id="heroReadiness">
                                 92%
                             </strong>
 
@@ -197,12 +197,15 @@
                         <div class="progress">
 
                             <div class="progress-bar"
+                                 id="heroReadinessBar"
                                  style="width:92%;">
                             </div>
 
                         </div>
 
                     </div>
+
+                    <span class="data-as-of hero-as-of"></span>
 
                 </div>
 
@@ -235,7 +238,7 @@
                             ACTIVE UNITS
                         </span>
 
-                        <strong class="kpi-value">
+                        <strong class="kpi-value" id="kpiActiveUnits">
                             302
                         </strong>
 
@@ -262,12 +265,12 @@
                             DUE SOON
                         </span>
 
-                        <strong class="kpi-value">
+                        <strong class="kpi-value" id="kpiDueSoon">
                             18
                         </strong>
 
                         <small>
-                            Units requiring service
+                            Remaining ≤ 500 KM
                         </small>
 
                     </div>
@@ -289,7 +292,7 @@
                             OVERDUE
                         </span>
 
-                        <strong class="kpi-value">
+                        <strong class="kpi-value" id="kpiOverdue">
                             5
                         </strong>
 
@@ -316,11 +319,11 @@
                             THIS MONTH
                         </span>
 
-                        <strong class="kpi-value">
+                        <strong class="kpi-value" id="kpiThisMonth">
                             47
                         </strong>
 
-                        <small>
+                        <small id="kpiThisMonthLabel">
                             Planned services
                         </small>
 
@@ -395,7 +398,7 @@
                         </div>
 
 
-                        <div class="chart-placeholder">
+                        <div class="chart-placeholder" id="workloadChart">
 
                             <div class="chart-message">
 
@@ -453,7 +456,7 @@
 
                                 </div>
 
-                                <strong>
+                                <strong id="svcPctA">
                                     42%
                                 </strong>
 
@@ -472,7 +475,7 @@
 
                                 </div>
 
-                                <strong>
+                                <strong id="svcPctB">
                                     28%
                                 </strong>
 
@@ -491,7 +494,7 @@
 
                                 </div>
 
-                                <strong>
+                                <strong id="svcPctC">
                                     18%
                                 </strong>
 
@@ -510,7 +513,7 @@
 
                                 </div>
 
-                                <strong>
+                                <strong id="svcPctD">
                                     12%
                                 </strong>
 
@@ -912,7 +915,7 @@
                                 TOTAL FLEET
                             </span>
 
-                            <strong>
+                            <strong id="fleetTotal">
                                 302
                             </strong>
 
@@ -924,16 +927,16 @@
                     <div class="fleet-card">
 
                         <div class="fleet-card-icon warning">
-                            <i class="fa-solid fa-wrench"></i>
+                            <i class="fa-solid fa-truck-fast"></i>
                         </div>
 
                         <div>
 
                             <span>
-                                IN MAINTENANCE
+                                RENTAL
                             </span>
 
-                            <strong>
+                            <strong id="fleetRental">
                                 12
                             </strong>
 
@@ -951,10 +954,10 @@
                         <div>
 
                             <span>
-                                READY
+                                SPARE / AVAILABLE
                             </span>
 
-                            <strong>
+                            <strong id="fleetSpare">
                                 290
                             </strong>
 
@@ -1004,21 +1007,21 @@
                 <div class="report-grid">
 
 
-                    <div class="report-card">
+                    <div class="report-card" data-report="hub">
 
                         <div class="report-icon">
-                            <i class="fa-solid fa-calendar-days"></i>
+                            <i class="fa-solid fa-map-location-dot"></i>
                         </div>
 
                         <div>
 
                             <h3>
-                                Monthly Service Plan
+                                Maintenance Performance (Hub)
                             </h3>
 
                             <p>
-                                View planned maintenance
-                                for the selected month.
+                                Weekly service plan broken
+                                down by HUB location.
                             </p>
 
                             <button class="text-button">
@@ -1031,7 +1034,7 @@
                     </div>
 
 
-                    <div class="report-card">
+                    <div class="report-card" data-report="pm">
 
                         <div class="report-icon">
                             <i class="fa-solid fa-file-lines"></i>
@@ -1040,12 +1043,12 @@
                         <div>
 
                             <h3>
-                                Service Summary
+                                Maintenance Performance (PM)
                             </h3>
 
                             <p>
-                                Review service distribution
-                                and fleet maintenance status.
+                                Weekly service plan broken
+                                down by service category A–D.
                             </p>
 
                             <button class="text-button">
@@ -1058,7 +1061,7 @@
                     </div>
 
 
-                    <div class="report-card">
+                    <div class="report-card" data-report="cost">
 
                         <div class="report-icon">
                             <i class="fa-solid fa-chart-line"></i>
@@ -1067,12 +1070,12 @@
                         <div>
 
                             <h3>
-                                Fleet Performance
+                                Maintenance Cost (Mileage)
                             </h3>
 
                             <p>
-                                Analyze fleet readiness
-                                and maintenance workload.
+                                Fleet distribution and cost
+                                by mileage bracket &amp; age.
                             </p>
 
                             <button class="text-button">
@@ -1080,6 +1083,147 @@
                                 <i class="fa-solid fa-arrow-right"></i>
                             </button>
 
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     REPORT DETAIL (Hub / PM / Cost)
+                ============================================== -->
+
+                <div class="report-detail" id="reportDetail" hidden>
+
+                    <div class="report-detail-header">
+
+                        <div class="report-tabs">
+
+                            <button class="report-tab active"
+                                    data-report="hub"
+                                    type="button">
+                                Hub Performance
+                            </button>
+
+                            <button class="report-tab"
+                                    data-report="pm"
+                                    type="button">
+                                PM Performance
+                            </button>
+
+                            <button class="report-tab"
+                                    data-report="cost"
+                                    type="button">
+                                Cost by Mileage
+                            </button>
+
+                        </div>
+
+                        <button class="icon-button"
+                                id="closeReportDetail"
+                                type="button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Hub Performance -->
+                    <div class="report-panel" data-report="hub">
+
+                        <div class="report-panel-meta">
+
+                            <span class="data-as-of"></span>
+
+                            <span class="report-panel-note">
+                                Aug &amp; Jan–Aug columns are awaiting a
+                                historical service-log source · Sept (Plan)
+                                is computed live from the master sheet.
+                            </span>
+
+                        </div>
+
+                        <div class="table-panel">
+                            <div class="table-header">
+                                <h4>Maintenance Performance (Hub) — All Unit</h4>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="hubTableAll" class="report-table"></table>
+                            </div>
+                        </div>
+
+                        <div class="table-panel">
+                            <div class="table-header">
+                                <h4>Maintenance Performance (Hub) — Unit Rental</h4>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="hubTableRental" class="report-table"></table>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PM Performance -->
+                    <div class="report-panel" data-report="pm" hidden>
+
+                        <div class="report-panel-meta">
+
+                            <span class="data-as-of"></span>
+
+                            <span class="report-panel-note">
+                                Aug &amp; Jan–Aug columns are awaiting a
+                                historical service-log source · Sept (Plan)
+                                is computed live from the master sheet.
+                            </span>
+
+                        </div>
+
+                        <div class="table-panel">
+                            <div class="table-header">
+                                <h4>Maintenance Performance (PM) — All Unit</h4>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="pmTableAll" class="report-table"></table>
+                            </div>
+                        </div>
+
+                        <div class="table-panel">
+                            <div class="table-header">
+                                <h4>Maintenance Performance (PM) — Unit Rental</h4>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="pmTableRental" class="report-table"></table>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Cost by Mileage -->
+                    <div class="report-panel" data-report="cost" hidden>
+
+                        <div class="report-panel-meta">
+
+                            <span class="data-as-of"></span>
+
+                            <span class="report-panel-note">
+                                Unit counts are live from the master sheet
+                                (current fleet, by mileage &amp; age) ·
+                                Cost/Unit and Amount are awaiting a cost
+                                data source.
+                            </span>
+
+                        </div>
+
+                        <div class="table-panel">
+                            <div class="table-header">
+                                <h4>Maintenance Cost (Mileage)</h4>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="costTable" class="report-table"></table>
+                            </div>
                         </div>
 
                     </div>
@@ -1135,8 +1279,11 @@
 
 
 
+    <!-- Report data (computed from SERVICE_PLAN.xlsx master sheet) -->
+    <script src="js/report-data.js?v=20260923"></script>
+
     <!-- Main JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=20260923"></script>
 
 </body>
 </html>
