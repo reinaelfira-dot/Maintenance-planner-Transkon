@@ -60,12 +60,12 @@
                     Dashboard
                 </a>
 
-                <a href="#planning" class="nav-link">
-                    Service Planning
-                </a>
-
                 <a href="#fleet" class="nav-link">
                     Fleet
+                </a>
+
+                <a href="#planning" class="nav-link">
+                    Service Planning
                 </a>
 
                 <a href="#reports" class="nav-link">
@@ -204,7 +204,7 @@
 
 
                     <div class="status-label">
-                        Active Units
+                        Unit Rental
                     </div>
 
 
@@ -248,23 +248,23 @@
              KPI SECTION
         ====================================================== -->
 
-        <section class="kpi-section">
+        <section class="kpi-section" id="fleet">
 
             <div class="container kpi-grid">
 
 
-                <!-- Active Units -->
+                <!-- Unit Rental -->
 
                 <div class="kpi-card">
 
                     <div class="kpi-icon">
-                        <i class="fa-solid fa-truck"></i>
+                        <i class="fa-solid fa-truck-fast"></i>
                     </div>
 
                     <div class="kpi-content">
 
                         <span class="kpi-label">
-                            ACTIVE UNITS
+                            UNIT RENTAL
                         </span>
 
                         <strong class="kpi-value" id="kpiActiveUnits">
@@ -272,7 +272,34 @@
                         </strong>
 
                         <small>
-                            Fleet currently active
+                            Status: Rental (status_unit)
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Unit Spare -->
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon success">
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <span class="kpi-label">
+                            UNIT SPARE
+                        </span>
+
+                        <strong class="kpi-value" id="kpiUnitSpare">
+                            89
+                        </strong>
+
+                        <small>
+                            Status: Spare (status_unit)
                         </small>
 
                     </div>
@@ -628,14 +655,6 @@
                                 All HUB
                             </option>
 
-                            <option value="BALIKPAPAN">
-                                Balikpapan
-                            </option>
-
-                            <option value="BATU HIJAU">
-                                Batu Hijau
-                            </option>
-
                         </select>
 
                     </div>
@@ -891,110 +910,6 @@
                             <i class="fa-solid fa-arrow-right"></i>
 
                         </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             FLEET
-        ====================================================== -->
-
-        <section class="section"
-                 id="fleet">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-eyebrow">
-                            FLEET MANAGEMENT
-                        </span>
-
-                        <h2>
-                            Fleet Readiness
-                        </h2>
-
-                    </div>
-
-                    <p>
-                        Fleet information will be connected
-                        to the master spreadsheet.
-                    </p>
-
-                </div>
-
-
-                <div class="fleet-cards">
-
-
-                    <div class="fleet-card">
-
-                        <div class="fleet-card-icon">
-                            <i class="fa-solid fa-truck"></i>
-                        </div>
-
-                        <div>
-
-                            <span>
-                                TOTAL FLEET
-                            </span>
-
-                            <strong id="fleetTotal">
-                                302
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="fleet-card">
-
-                        <div class="fleet-card-icon warning">
-                            <i class="fa-solid fa-truck-fast"></i>
-                        </div>
-
-                        <div>
-
-                            <span>
-                                RENTAL
-                            </span>
-
-                            <strong id="fleetRental">
-                                12
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="fleet-card">
-
-                        <div class="fleet-card-icon success">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-
-                        <div>
-
-                            <span>
-                                SPARE / AVAILABLE
-                            </span>
-
-                            <strong id="fleetSpare">
-                                290
-                            </strong>
-
-                        </div>
 
                     </div>
 
